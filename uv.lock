@@ -163,7 +163,7 @@ wheels = [
 
 [[package]]
 name = "vecsio"
-version = "0.1.0"
+version = "0.2.0a0"
 source = { virtual = "." }
 dependencies = [
     { name = "logging" },
