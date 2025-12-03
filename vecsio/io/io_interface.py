@@ -6,13 +6,13 @@ from numpy.typing import NDArray, DTypeLike
 
 logger = logging.getLogger("vecsio")
 
-ISIZE = np.dtype(np.uint32).itemsize
+ISIZE = int(np.dtype(np.uint32).itemsize)
 
 def read_vecs_meta(path: Path) -> tuple[int, int]:
     file_size = path.stat().st_size
     with open(path, "rb") as f:
         dim_bytes = f.read(ISIZE)
-    dim = np.frombuffer(dim_bytes, dtype=np.uint32)[0]
+    dim = int(np.frombuffer(dim_bytes, dtype=np.uint32)[0])
     stride = dim + 1
     assert file_size % (stride * ISIZE) == 0, f"Invalid vec file: size={file_size}, dim={dim}"
     count = file_size // (stride * ISIZE)
